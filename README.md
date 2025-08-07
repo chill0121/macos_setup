@@ -1,67 +1,86 @@
-# macos_setup
+# macOS Setup
 
-This respository is for setting up a new Macbook with various settings I've grown to like.
+This repository is for setting up a new MacBook with various settings and applications I've grown to like.
 
-# List of applications
+## Table of Contents
 
-- Brew
-- Google Chrome
-- Magnet
-- fish
-- Oh-My-Posh
-- warp
+- [List of Applications](#list-of-applications)
+- [Initial Setup](#initial-setup)
+- [Installations](#installations)
+  - [Google Chrome](#google-chrome)
+  - [Nerd Fonts](#nerd-fonts)
+  - [Hyper](#hyper)
+  - [Warp](#warp)
+  - [fish](#fish)
+  - [Oh My Posh](#oh-my-posh)
+  - [GitHub Desktop](#github-desktop)
+  - [GitHub CLI](#github-cli)
+  - [Amazon Workspaces](#amazon-workspaces)
+  - [VS Code](#vs-code)
+  - [Magnet](#magnet)
+  - [Maccy](#maccy)
+  - [AWS CLI](#aws-cli)
+  - [pyenv and Python](#pyenv-and-python)
+  - [pipenv](#pipenv)
+  - [glances](#glances)
+  - [Discord](#discord)
+  - [Obsidian](#obsidian)
+  - [Docker](#docker)
+
+# List of Applications
+
+## Package Manager
 - Homebrew
-- VS Code
-  - Alignment
-  - Docker
-  - Git Graph
-  - GitLense
-  - GitHub Pull Request and Issues
-  - GitHub Copilot
-  - HashiCorp Terraform
+
+## Web Browser
+- Google Chrome
+
+## Terminal & Shell
+- Hyper
+- Warp
+- fish
+- Oh My Posh
+- Nerd Fonts
+
+## Development Tools
 - GitHub Desktop
 - GitHub CLI
+- VS Code
 - AWS CLI
+- Docker
+
+## Python Development
 - pyenv
+- Python
 - pipenv
-- python
-- terraform
-- terraform-docs
-- Dropbox
-- Magnet
-- Nerd Fonts
-- ykman
-- gpg
-- pinentry-mac
-- obsidian
-- docker
-- glances
+
+## Productivity & Utilities
+- Magnet (window management)
+- Maccy (clipboard manager)
+- glances (system monitoring)
+- Obsidian (note-taking)
+
+## Communication & Work
+- Amazon Workspaces
 - Discord
-- Soundsource
 
-# Initial Set Up
+# Initial Setup
 
-The installations of applications utilizes Homebrew as the package manager for MacOS. It is best practice to use a package manager for easier installation and keeping your applications up to date.
+The installation of applications utilizes Homebrew as the package manager for macOS. It is best practice to use a package manager for easier installation and keeping your applications up to date.
 
-1. Install Homebrew
+## 1. Install Homebrew
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Configure automatic updates for Homebrew
+## 2. Configure Automatic Updates for Homebrew
 
 ```bash
 brew autoupdate start --upgrade --cleanup --enable-notification
 ```
 
 # Installations
-
-## Homebrew
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
 
 ## Google Chrome
 
@@ -82,6 +101,15 @@ brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 ```
 
+## Hyper
+
+1. Install Hyper
+
+```bash
+brew install --cask hyper
+hyper install hyper-material-theme
+```
+
 ## Warp
 
 https://www.warp.dev/
@@ -92,7 +120,7 @@ https://www.warp.dev/
 brew install --cask warp
 mkdir -p ~/.warp/themes
 cd ~/.warp/themes
-curl -O "https://raw.githubusercontent.com/zachreborn/warp_theme_hyper_material/main/hyper_material.yaml"
+curl -O "https://raw.githubusercontent.com/chill0121/warp_theme_hyper_material/main/hyper_material.yaml"
 cd ~
 ```
 
@@ -120,19 +148,20 @@ fish_update_completions
 3. Set up fish to run oh-my-posh and have all functions
 
 ```bash
+touch ~/.config/fish/config.fish
 cp -R ~/code/macos_setup/.config/fish/* ~/.config/fish/
 ```
 
-## Oh-My-Posh
+## Oh My Posh
 
-1. Install Oh-My-Posh
+1. Install Oh My Posh
 
 ```bash
 brew tap jandedobbeleer/oh-my-posh
 brew install oh-my-posh
 mkdir ~/.poshthemes
 cd ~/.poshthemes
-curl -O "https://raw.githubusercontent.com/zachreborn/macos_setup/main/.poshthemes/octo-theme.omp.json"
+curl -O "https://raw.githubusercontent.com/chill0121/macos_setup/main/.poshthemes/octo-theme.omp.json"
 oh-my-posh init fish --config ~/.poshthemes/octo-theme.omp.json | source
 cd ~
 ```
@@ -171,13 +200,19 @@ brew install --cask amazon-workspaces
 brew install --cask visual-studio-code
 ```
 
-2. Login to Github in VS Code to synchronize settings and plugins
+2. Login to GitHub in VS Code to synchronize settings and extensions
 
 ## Magnet
 
-1. Install Magnet by browsing to https://apps.apple.com/us/app/magnet/id441258766?mt=12
+1. Install Magnet from the Mac App Store: https://apps.apple.com/us/app/magnet/id441258766?mt=12
 2. Open Magnet
 3. Follow the setup instructions to enable Magnet to control your windows
+
+## Maccy
+
+```bash
+brew install --cask maccy
+```
 
 ## AWS CLI
 
@@ -185,85 +220,54 @@ brew install --cask visual-studio-code
 brew install awscli
 ```
 
-## Terraform
+## pyenv and Python
 
-```bash
-brew install terraform
-```
-
-## Terraform-docs
-
-```bash
-brew install terraform-docs
-```
-
-### Terraform-docs Usage
-
-```bash
-terraform-docs markdown table --output-file ./README.md .
-```
-
-## pyenv
-
-https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c
+Reference: https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c
 
 ```bash
 brew install pyenv
+pyenv install {python_version}    # Install specific Python version
+pyenv global {python_version}     # Set global Python version
+pyenv local {python_version}      # Set local Python version for current directory
 ```
+
+**Note:** Replace `{python_version}` with the desired Python version. Check available versions with `pyenv install --list`.
 
 ## pipenv
 
-https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c
+Reference: https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c
 
 ```bash
 brew install pipenv
 ```
 
-## ykman
+To create a new project and install packages:
 
 ```bash
-brew install ykman
-```
-
-## gpg
-
-```bash
-brew install gpg
-```
-
-## pinentry-mac
-
-```bash
-brew install pinentry-mac
+cd your-project-directory
+pipenv install                    # Create virtual environment
+pipenv install scikit-learn pandas   # Install specific packages
+pipenv shell                     # Activate virtual environment
 ```
 
 ## glances
 
+A cross-platform system monitoring tool.
+
 ```bash
 brew install glances
+```
+
+Run glances to monitor your system:
+
+```bash
+glances
 ```
 
 ## Discord
 
 ```bash
 brew install --cask discord
-```
-
-## Dropbox
-
-1. Install Dropbox
-
-```bash
-brew install --cask dropbox
-```
-
-2. Sign in to Dropbox
-3. Configure synchronization settings
-
-## Steam
-
-```bash
-brew install --cask steam
 ```
 
 ## Obsidian
@@ -274,32 +278,14 @@ brew install --cask obsidian
 
 ## Docker
 
+Install Docker Desktop (GUI application):
+
 ```bash
 brew install --cask docker-desktop
+```
+
+Install Docker CLI:
+
+```bash
 brew install docker
-```
-
-## Soundsource
-
-```bash
-brew install --cask soundsource
-```
-
----
-
-# Older Configurations
-
-## Hyper
-
-https://hyper.is/
-
-```bash
-brew install hyper
-hyper install hyper-material-theme
-```
-
-## htop
-
-```bash
-brew install htop
 ```
