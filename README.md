@@ -262,7 +262,7 @@ PySpark requires Java to be installed. This setup installs Java and configures P
 brew install openjdk@17
 ```
 
-**Note:** Using OpenJDK 17 instead of 24 for better PySpark compatibility.
+**Note:** Using OpenJDK 17 for better PySpark compatibility.
 
 ### 2. Create Java symlink
 
