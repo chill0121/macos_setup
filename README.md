@@ -22,6 +22,7 @@ This repository is for setting up a new MacBook with various settings and applic
   - [AWS CLI](#aws-cli)
   - [pyenv and Python](#pyenv-and-python)
   - [pipenv](#pipenv)
+  - [PySpark](#pyspark)
   - [glances](#glances)
   - [Discord](#discord)
   - [Obsidian](#obsidian)
@@ -53,6 +54,7 @@ This repository is for setting up a new MacBook with various settings and applic
 - pyenv
 - Python
 - pipenv
+- PySpark
 
 ## Productivity & Utilities
 - Magnet (window management)
@@ -246,9 +248,51 @@ To create a new project and install packages:
 ```bash
 cd your-project-directory
 pipenv install                    # Create virtual environment
-pipenv install scikit-learn pandas   # Install specific packages
+pipenv install requests pandas   # Install specific packages
 pipenv shell                     # Activate virtual environment
 ```
+
+## PySpark
+
+PySpark requires Java to be installed. This setup installs Java and configures PySpark for big data processing.
+
+### 1. Install Java (OpenJDK)
+
+```bash
+brew install openjdk@17
+```
+
+**Note:** Using OpenJDK 17 instead of 24 for better PySpark compatibility.
+
+### 2. Create Java symlink
+
+```bash
+sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+```
+
+### 3. Set JAVA_HOME environment variable
+
+Edit `~/.config/fish/config.fish` and add this line:
+
+```bash
+set -gx JAVA_HOME /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+```
+
+### 4. Install PySpark
+
+If using pipenv:
+
+```bash
+pipenv install pyspark
+```
+
+### 5. Verify installation
+
+```bash
+python -c "import pyspark; print(pyspark.__version__)"
+```
+
+**Note:** Restart your terminal after setting JAVA_HOME to ensure the environment variable is loaded.
 
 ## glances
 
